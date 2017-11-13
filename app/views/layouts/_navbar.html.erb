@@ -1,0 +1,30 @@
+<%if user_signed_in? %>
+<nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Meeteam Vox</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "Team invitations (#{current_user.team_memberships.pending.count})", team_memberships_path if current_user.team_memberships.pending.count > 0 %></li>
+        <li><%= link_to "Meeting invitations (#{current_user.meeting_invitations.pending.count})", meeting_invitations_path if current_user.meeting_invitations.pending.count > 0 %></li>
+        <li><%= link_to "Friend requests (#{current_user.friend_requests.count})", friend_requests_path if current_user.friend_requests.count > 0 %></li>
+        <li><%= link_to "Teams", teams_path %></li>
+        <li><%= link_to "Meetings",meetings_path %></li>
+        <li><%= link_to "Friends",friendships_path %></li>
+        <li><%= link_to "Profile", edit_user_registration_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+
+      <ul id="mobile-demo" class="side-nav">
+        <li><%= link_to "Team invitations (#{current_user.team_memberships.pending.count})", team_memberships_path if current_user.team_memberships.pending.count > 0 %></li>
+        <li><%= link_to "Meeting invitations (#{current_user.meeting_invitations.pending.count})", meeting_invitations_path if current_user.meeting_invitations.pending.count > 0 %></li>
+        <li><%= link_to "Friend requests (#{current_user.friend_requests.count})", friend_requests_path if current_user.friend_requests.count > 0 %></li>
+        <li><%= link_to "Teams", teams_path %></li>
+        <li><%= link_to "Meetings",meetings_path %></li>
+        <li><%= link_to "Friends",friendships_path %></li>
+        <li><%= link_to "Profile", edit_user_registration_path %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+
+    </div>
+</nav>
+<%end%>

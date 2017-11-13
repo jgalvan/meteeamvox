@@ -1,0 +1,12 @@
+<div class="friendships-controller">
+  <h1>Friends</h1>
+  <%= link_to "Looking for new friends?", user_search_path, class: 'btn waves-effect waves-light find-friends-btn blue lighten-2' %>
+
+  <% @friendships.each do |friendship| %>
+  <div class="card friend-card">
+    <i class="material-icons friend-icon">person</i>
+    <p class="friend-name"><%= friendship.friend.first_name %> <%= friendship.friend.last_name %></p>
+    <%= link_to 'Unfriend', friendship, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light remove-friend-btn red lighten-2" %>
+  </div>
+  <% end %>
+</div>

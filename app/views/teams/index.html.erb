@@ -1,0 +1,28 @@
+<div class="teams-controller">
+  <div>
+
+    <h1>Teams <a id="" href="#modal1" class="btn-floating btn-large waves-effect waves-light green modal-trigger add-team-button"><i class="material-icons">add</i></a></h1>
+   
+  </div>
+
+  <% @teams.each do |team| %>
+  <div class="card team-card">
+    <i class="material-icons friend-icon">people</i>
+    <p class="friend-name"><%= team.team_name %></p>
+    <%= link_to 'Info', team, class: "btn waves-effect waves-light remove-friend-btn light blue" %>
+    <%= link_to 'Leave', team, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light remove-friend-btn red lighten-2" %>
+  </div>
+  <% end %>
+
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Please type the name of team you want to create</h4>
+        <%= form_tag teams_path, method: :post do %>
+          <%= text_field_tag :team_name %>
+          <%= submit_tag "Create", name: nil, id: "add-team-member-button", class: "btn waves-effect waves-light add-team-member-button" %> 
+        <% end %>
+    </div>
+  </div>
+
+</div>

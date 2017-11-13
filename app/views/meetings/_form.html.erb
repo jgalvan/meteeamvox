@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="card col s6 offset-s3 meeting-card">
+    <%= form_with(model: meeting, local: true ) do |f| %>
+
+      <% if meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+
+          <ul>
+          <% meeting.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :title, autofocus: true %>
+          <%= f.label :title, setClassForLabel(meeting.title)%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :subject %>
+          <%= f.label :subject, setClassForLabel(meeting.subject) %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <%= f.label :meetingTime, "Time of Meeting", setClassForLabel(meeting.meetingTime) %>
+          <%= f.date_field :meetingTime, class: "datepicker", value: (meeting.meetingTime || DateTime.now).strftime("%B %d, %Y") %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_area :description, class: "materialize-textarea" %>
+          <%= f.label :description, setClassForLabel(meeting.description) %>
+        </div>
+      </div>
+
+  <% if meeting.transcript %>
+    <div class="row">
+      <div class="input-field col s12">
+        <%= f.text_area :transcript, class: "materialize-textarea" %>
+        <%= f.label :transcript, setClassForLabel(meeting.transcript) %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if meeting.team %>
+    <%= f.hidden_field :team_id, value: meeting.team.id %>
+  <% end %>
+
+  <div class="save-button">
+    <%= f.button(type: 'submit', class: "btn-floating btn-large waves-effect waves-light blue") do %>
+      <i class='material-icons'>save</i>save</i> 
+    <% end %>
+  </div>
+  <% end %>
+</div>

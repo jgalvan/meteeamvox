@@ -1,0 +1,42 @@
+// Place all the styles related to the friendships controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+div.friendships-controller {
+    div.friend-card {
+        width: 350px;
+        float: left;
+        margin: 20px 12% 20px 0;
+    
+        * {
+            display: inline-block;
+        }
+    
+        i.friend-icon {
+            position:absolute;
+            top: 25%;
+            margin-left: 10px;
+        }
+    
+        .friend-name {
+            margin-left: 50px;
+            margin-right: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        a.remove-friend-btn {
+            font-size: 12px;
+            margin: 8px 10px 5px 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            float: right;
+        }
+    }
+
+    a.find-friends-btn {
+        position:absolute;
+        top: 110px;
+        right: 25px;
+    }
+}

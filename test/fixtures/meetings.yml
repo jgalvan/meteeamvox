@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  subject: MyString
+  meetingTime: 2017-11-09 17:41:18
+  user: one
+  team: one
+  description: MyString
+
+two:
+  title: MyString
+  subject: MyString
+  meetingTime: 2017-11-09 17:41:18
+  user: two
+  team: two
+  description: MyString

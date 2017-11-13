@@ -1,0 +1,20 @@
+<h1>Friend requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Request</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friend_requests.each do |request| %>
+      <tr>
+        <td><%= request.user.email %></td>
+        <td><%= link_to 'Accept', friend_request_accept_path(request), method: :post %></td>
+        <td><%= link_to 'Reject', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

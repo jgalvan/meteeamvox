@@ -1,0 +1,62 @@
+<h1>Edit <%= resource_name.to_s.humanize %></h1>
+
+<div class="edit-user-card z-depth-5" id="edit-user-info">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+          <div class="input-field">
+            <%= f.text_field :first_name %>
+            <%= f.label :first_name, setClassForLabel(resource.first_name) %>
+          </div>
+
+          <div class="input-field">
+            <%= f.text_field :last_name %>
+            <%= f.label :last_name, setClassForLabel(resource.last_name) %>
+          </div>
+
+          <div class="input-field">
+            <%= f.email_field :email %>
+            <%= f.label :email, "E-mail", setClassForLabel(resource.email)  %>
+          </div>
+
+          <div class="input-field">
+            <%= f.text_field :username %>
+            <%= f.label :username, setClassForLabel(resource.username) %>
+          </div>
+
+          <div class="input-field">
+            <%= f.text_field :country%>
+            <%= f.label :country, setClassForLabel(resource.country) %>
+          </div>
+
+          <div class="input-field">
+            <%= f.label :password, class: "active" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't mean to change it." %>
+          </div>
+
+          <div class="input-field">
+            <%= f.label :password_confirmation, class: "active" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Same as above." %>
+          </div>
+
+          <div class="input-field">
+            <%= f.label :current_password, class: "active" %>
+            <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm changes." %>
+          </div>
+
+            <%= devise_error_messages! %>
+
+          <div class="save-button">
+            <%= f.button(type: 'submit', class: "btn-floating btn-large waves-effect waves-light blue") do %>
+              <i class='material-icons'>save</i>save</i> 
+            <% end %>
+          </div>
+
+          <%#= f.submit 'Save', class: "btn waves-effect waves-light sign-in-button" %><br>
+        <% end %>
+
+      </div>
+
+
+
+<!--<h3>Cancel my account</h3> <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p> -->

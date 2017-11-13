@@ -1,0 +1,102 @@
+.teams-controller {
+    .search-wrapper {
+        width: 70%;
+        .search-box {
+            //display:inline;
+            width: 90%;
+            margin: 5px 0 0 35px;
+        }
+        .search-icon {
+            position: absolute;
+            top: 35%;
+            left: 1%;
+        }
+    }
+    
+    .add-meeting-icon {
+        position: absolute;
+        top: 0;
+        right: -40%;
+    }
+
+    .meetingTime-column {
+        width: 40%;
+    }
+
+    .first-table-column {
+        padding-left: 20px;
+    }
+    
+    .table-header {
+        background-color: rgba($color: #3e9cbe, $alpha: 0.06)
+    }
+
+    .table {
+        margin-top: 30px;
+    }
+
+    h2 {
+        display: inline-block;
+        font-family: 'PT Serif';
+        color: rgb(23, 71, 126);
+    }
+
+    div.friend-card, div.team-card {
+        float: left;
+        margin: 20px 12% 20px 0;
+    
+        * {
+            display: inline-block;
+        }
+    
+        i.friend-icon {
+            position:absolute;
+            top: 25%;
+            margin-left: 10px;
+        }
+    
+        .friend-name {
+            margin-left: 50px;
+            margin-right: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        a.remove-friend-btn {
+            font-size: 12px;
+            margin: 8px 10px 5px 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            float: right;
+        }
+    }
+
+    div.friend-card {
+        width: 100%;
+    }
+
+    div.team-card {
+        width: 450px;
+    }
+
+    .add-team-member-button {
+        font-size: 11px;
+        padding: 0 10px 0 10px;
+        margin: 0 10px 0 10px;
+        height: 70%;
+    }
+
+    .modal-content h4 {
+        font-size: medium;
+    }
+
+    .add-team-button {
+        margin-left: 50px;
+        margin-bottom:10px;
+    }
+
+    #members-header {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+}

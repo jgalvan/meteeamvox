@@ -1,0 +1,20 @@
+<h1>Team invitations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Team name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team_invitations.each do |invitation| %>
+      <tr>
+        <td><%= invitation.team.team_name %></td>
+        <td><%= link_to 'Accept', team_membership_accept_path(invitation), method: :post %></td>
+        <td><%= link_to 'Reject', invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

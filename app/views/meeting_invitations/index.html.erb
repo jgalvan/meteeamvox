@@ -1,0 +1,22 @@
+<h1>Meeting invitations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Owner</th>
+      <th>Meeting title</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meeting_invitations.each do |invitation| %>
+      <tr>
+        <td><%= invitation.meeting.user.email %></td>
+        <td><%= invitation.meeting.title %></td>
+        <td><%= link_to 'Accept', meeting_invitation_accept_path(invitation), method: :post %></td>
+        <td><%= link_to 'Reject', invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

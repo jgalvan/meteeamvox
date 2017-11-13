@@ -1,0 +1,164 @@
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="meetings-controller" id="meetings-show-view">
+
+    <div class="valign-wrapper">
+
+        <h2 class="<%= @meeting.id %>" id="meeting-title"><%= @meeting.title %></h2>
+
+        <div class = "edit-meeting">
+          <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block; right: 24px;">
+            <a class="btn-floating btn-large red">
+              <i class="large material-icons">menu</i>
+            </a>
+            <ul>
+              <li>
+                <%= link_to ('<i class="material-icons">format_list_bulleted</i>').html_safe, meetings_path(), class: "btn-floating green fab-button" %>
+              </li>
+              <li>
+                <%= link_to ('<i class="material-icons">delete</i>').html_safe, @meeting, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn-floating red fab-button" %>
+              </li>
+               <li>
+                <%= link_to ('<i class="material-icons">add</i>').html_safe, new_meeting_path(), class: "btn-floating yellow darken-1 fab-button" %>
+              </li>
+              <li>
+                <%= link_to ('<i class="material-icons">edit</i>').html_safe, edit_meeting_path(@meeting), class: "btn-floating blue fab-button" %>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+
+    </div>
+
+    <div class="card meeting-card">
+      <div class="meeting-info-section">
+        <%= label_tag @meeting.subject, "Subject"%>
+        <p><%= @meeting.subject %></p>
+
+      <%= label_tag @meeting.user, "Owner"%>
+      <p><%= (@meeting.user.first_name || @meeting.user.email) + " " + (@meeting.user.last_name || "") %></p>
+
+        <%= label_tag @meeting.meetingTime, "Meeting time"%>
+        <p><%= @meeting.meetingTime.strftime("%B %d, %Y") %></p>
+
+        <%= label_tag @meeting.description, "Description"%>
+        <p><%= @meeting.description %></p>
+      </div>
+
+      <hr>
+
+      <div class="collaborators-section">
+        <% if @meeting.team %>
+        <h5>Team </h5>
+          <div class="card friend-meeting-card">
+                <i class="material-icons friend-icon">people_outline</i>
+                <p class="friend-name"><%= @meeting.team.team_name %></p>
+          </div>
+        <% else %>
+          <h5>Collaborators: </h5>
+          <% if @meeting.meeting_invitations.count > 0 %>
+              <% @meeting.meeting_invitations.each do |invitation| %>
+                <div class="card friend-meeting-card">
+                  <i class="material-icons friend-icon">person</i>
+                  <% if invitation.accepted? %>
+                      <p class="friend-name"><%= invitation.user.email %></p>
+                  <% else %>
+                      <p class="friend-name"><%= invitation.user.email %> (Pending acceptance)</p>
+                  <% end %>
+                <% #link_to 'Unfriend', friendship, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn waves-effect waves-light remove-friend-btn red lighten-2" %>
+                </div>
+              <% end %>
+          <% else %>
+            <div class="switch">
+              <span>Prefer sharing with a team?</span>
+              <label>
+                Friends
+                <input type="checkbox" id="invite-type">
+                <span class="lever"></span>
+                Team
+              </label>
+            </div>
+          <% end %>
+          <div id="add-meeting-collaborators-section">
+          <%= form_tag add_meeting_meeting_invitations_path(@meeting), method: :post do %>
+            <%= select_tag :email, options_for_select(current_user.friends.map(&:email), disabled: (@meeting.collaborators.map(&:email))), include_blank:true, id: "add-meeting-collaborator", class: "add-team-members"%>
+            <%= submit_tag "Add", name: nil, id: "add-team-member-button", class: "btn waves-effect waves-light add-meeting-collaborator-button" %> 
+          <% end %>
+          </div>
+          <div id="add-team-section" hidden>
+            <%= form_tag add_team_meeting_path(@meeting), method: :post do %>
+            <%= select_tag :team, options_for_select(current_user.teams.map { |team| [team.team_name,team.id] }), include_blank:true, id: "add-team", class: "add-team-members"%>
+            <%= submit_tag "Save", name: nil, id: "add-team-button", class: "btn waves-effect waves-light add-team-member-button" %> 
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <hr>
+
+      <div class="transcript-section">
+        <% if @meeting.transcript %>
+            <div class="transcript"> 
+                <h5>Transcript</h5>
+                <!--<%= label_tag @meeting.transcript, "Transcript"%>-->
+                <p id="transcript-text"><%= @meeting.transcript %></p>
+            </div>
+        <% else %>
+            <div class="transcript"> 
+                <h4>Transcript</h4>
+                <p id="transcript-text">
+                  No meeting has been recorded.
+                </p>
+            </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="record-action-icons">
+
+      <a href="#" id="start-btn" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">mic</i></a>
+      <a href="#" id="stop-btn" class="btn-floating btn-large waves-effect waves-light red blinking"><i class="material-icons">stop</i></a>
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+
+</div>

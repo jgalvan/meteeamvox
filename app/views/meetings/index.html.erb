@@ -1,0 +1,34 @@
+<div class="meetings-controller">
+  <h1>Meetings</h1>
+  <div class="search-wrapper card">
+    <%= form_tag meetings_path, method: :get do %>
+      <span class="material-icons search-icon">search</span>
+      <%= text_field_tag :query, params[:query], class: "search-box" %> 
+    <% end %>
+    
+    <%= link_to ("<i class='material-icons'>add</i>").html_safe, new_meeting_path, class: "btn-floating btn-large waves-effect waves-light add-meeting-icon" %>
+  </div>
+<div class="card">
+  <table class="bordered highlight table">
+    <thead>
+      <tr class="table-header">
+        <th class="first-table-column">Title</th>
+        <th>Date</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @meetings.each do |meeting| %>
+        <tr>
+          <td class="first-table-column"><%= meeting.title %></td>
+          <td class="meetingTime-column"><%= meeting.meetingTime.strftime("%B %d, %Y") %></td>
+          <td><%= link_to ("<i class='material-icons'>info_outline</i>").html_safe, meeting %></td>
+          <td><%= link_to ("<i class='material-icons'>edit</i>").html_safe, edit_meeting_path(meeting) %></td>
+          <td><%= link_to ("<i class='material-icons'>delete</i>").html_safe, meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>

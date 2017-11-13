@@ -1,0 +1,13 @@
+<footer class="page-footer">
+    <div class="footer-copyright">
+        <div class="container">
+            © <%= Date.today.year %> Jesús Galván and Diego Astiazarán
+            <%= link_to "About us",'/about_us', class: "grey-text text-lighten-4 right footer-link" %>
+            <%= link_to "How it works",'/how_it_works', class: "grey-text text-lighten-4 right footer-link" %>
+            <%= link_to "Try it out!",'/try_it_out', class: "grey-text text-lighten-4 right footer-link" %>
+            <% if !current_page?('/') %>
+                <%= link_to "Home",'/', class: "grey-text text-lighten-4 right footer-link" %>
+            <% end %>
+        </div>
+    </div>
+</footer>

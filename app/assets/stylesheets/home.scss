@@ -1,0 +1,107 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.home-body {
+    background: 
+        linear-gradient(
+            rgba(126,214,189,0.35), 
+            rgba(126, 214, 189, 0.35)
+        ),
+        url("82-usersthink-stock-image.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:100%; 
+    height:100%;
+    margin: 0;
+    background-position: center;
+    position: relative;
+
+    .landing {
+        width:100%; 
+        height:100%;
+        margin: 0;
+        text-align: center;
+        position: relative;
+        
+        .name {
+            margin: auto;
+            position: relative;
+            top: 15%;
+        }
+    
+        .hero-text {
+            text-align: center;
+            display: inline-block;
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px rgba(77, 75, 75, 0.767);
+            font-weight: 900;
+            font-family: 'Barlow Semi Condensed', sans-serif;
+        }
+    
+        .sign-in-form-box {
+            position: relative;
+            top: 20%;
+            margin: auto;
+            padding: 20px;
+            width: 350px;
+            background-color: rgba(255, 255, 255,0.75);
+            border: 3px solid rgba(189, 188, 188, 0.90);
+    
+            .sign-in-button {
+                margin: 15px;
+            }
+    
+            a {
+                margin: 10px;
+            }
+    
+            #error-msg {
+                color: #a76f65e0;
+                margin: 15px;
+            }
+        }
+    
+    }
+    
+    footer.page-footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        padding-top: 0;
+    
+        .container{
+            width: 90%;
+            max-width:initial;
+            > .row{
+                margin: 0;
+                > .col{
+                    padding: 0;
+                }
+            }
+        }
+    
+        a.footer-link {
+            margin-left: 20px;
+        }
+    }
+
+    .about-us-section {
+        text-align: justify;
+        position: relative;
+        top: 20%;
+        margin: auto;
+        padding: 20px;
+        width: 500px;
+        background-color: rgba(255, 255, 255,0.75);
+        border: 3px solid rgba(189, 188, 188, 0.90);
+    }
+
+    .wrapper-for-spinner {
+        text-align: center;
+        position: absolute;
+        top: 3px;
+        right: 5px;
+    }
+}

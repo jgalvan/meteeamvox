@@ -1,0 +1,11 @@
+<div class="meetings-controller">
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <h2>New Meeting</h2>
+            <%= link_to ("<i class='material-icons'>undo</i>").html_safe, :back, class: "btn-floating btn-large waves-effect waves-light yellow darken-1 cancel-meeting-icon" %>
+        </div>
+    </div>
+
+    <%= render 'form', meeting: @meeting %>
+    <%# link_to 'Cancel', :back, class: "btn waves-effect waves-lighten orange lighten-2 cancel-button" %>
+</div>

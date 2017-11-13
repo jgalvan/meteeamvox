@@ -1,0 +1,40 @@
+<div class="meetings-controller">
+  <h1>Look for friends</h1>
+
+  <div class="search-wrapper card">
+  <%= form_tag user_search_path, method: :get do %>
+    <span class="material-icons search-icon">search</span>
+    <%= text_field_tag :query, params[:query], class: "search-box" %> 
+  <% end %>
+  </div>
+
+  <% if @search_results %>
+  <table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_results.each do |result| %>
+      <tr>
+        <td><%= result.email %></td>
+        <td>
+            <% if result.friendships.find_by_friend_id(current_user) %>
+                Already a friend
+            <% elsif result.pending_response_users.find_by_id(current_user)%>
+                Friend request already sent
+            <% elsif current_user.pending_response_users.find_by_id(result)%>
+                Request pending response
+            <% else %>
+                <%= link_to 'Add friend', add_friend_request_path(result), method: :post, data: { confirm: 'Are you sure?' } %>
+            
+            <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+    <% end %>
+</div>
